@@ -1,5 +1,6 @@
 package dev.app.rentingCar_boot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import dev.app.rentingCar_boot.utils.GenerateUUID;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -19,6 +20,7 @@ public class InssuranceCia {
     private int qtyEmployee;
     private boolean isActive;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "inssuranceCia", cascade = CascadeType.ALL)
     private List<Car> cars;
 

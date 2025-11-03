@@ -2,6 +2,7 @@ package dev.app.rentingCar_boot.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.app.rentingCar_boot.utils.GenerateUUID;
 import jakarta.persistence.*;
 import java.time.Instant;
@@ -25,7 +26,8 @@ public class Car {
     private int year;
     private double price;
 
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "inssurance_cia_id")
     private InssuranceCia inssuranceCia;
@@ -39,11 +41,20 @@ public class Car {
     @OneToMany(mappedBy= "car" , cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Booking> bookings = new ArrayList<>();
 
+    @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "car_available_dates", joinColumns = @JoinColumn(name = "car_id"))
     @MapKeyColumn(name = "date_key")
     @Column(name = "is_available")
     private Map<Integer, Boolean> availableDates = new HashMap<>();
+
+
+    //private String availableDatesSummary;
+
+    @JsonProperty("availabilityRanges")
+    public String getAvailabilityRanges() {
+        return formatAvailabilityRanges();
+    }
 
     public Car() {
         this.id = GenerateUUID.generateFourDigitUuid();
