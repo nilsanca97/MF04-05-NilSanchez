@@ -6,9 +6,10 @@
 
 ### Week #07
 
-| Version | Title | Description | Status | Date |
-| ------- | ----- | ----------- | ------ | ---- |
-| v4.5    |       |             |        |      |
+| Version | Title              | Description                              | Status   | Date  |
+| ------- | ------------------ | ---------------------------------------- | -------- | ----- |
+| v4.6    | circular reference | how to not publishing all data from /car | cfa4f966 | 03/11 |
+| v5.0    |                    |                                          |          |       |
 
 ## Vaadin Hilla Version
 
@@ -61,7 +62,7 @@
 | v4.3    | testGenerateBooking mock                                                         | at bookingTest                                | 554f2c2e | 27/10 |
 | v4.4    | mock BookingTests INTERCEPTOR no real daata at db, testFindByBookingDateLessThan | query at mock bookingTest                     | 2286ecfc | 28/10 |
 | v4.4.1  | BookingTests testFindByBookingDateLessThan_DB                                    | query at bookingTest                          | cb8dd61e | 28/10 |
-| v4.5    | reat controller + postman                                                        | generateBooking                               | f5131ea2 | 31/10 |
+| v4.5    | rest controller + postman                                                        | generateBooking                               | f5131ea2 | 31/10 |
 
 ## Old Sprints Quickstart Maven Version
 
