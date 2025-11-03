@@ -1,5 +1,7 @@
 # Circular Reference in Car <> CarExtras
 
+- [rentingCarTest/docs/rmasterdocappends/availability-serialization-approaches.md at master · AlbertProfe/rentingCarTest · GitHub](https://github.com/AlbertProfe/rentingCarTest/blob/master/docs/masterdocappends/availability-serialization-approaches.md)
+
 ## Issue
 
 A **circular reference** occurs when two objects reference each other, creating an endless loop during serialization.
@@ -38,3 +40,25 @@ We fix the circular reference issue by adding Jackson annotations:
 Now our `/api/cars` endpoint should return proper JSON without the infinite loop. The [CarExtras](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-boot/src/main/java/dev/app/rentingCar_boot/model/CarExtras.java:6:0-103:1) objects will still be included in the response, but they won't contain the back-reference to their parent [Car](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-boot/src/main/java/dev/app/rentingCar_boot/model/Car.java:15:0-277:1), preventing the circular dependency.
 
 We now can test the endpoint again and we should see clean JSON output with car extras included but no circular references.
+
+## Comparison with @JsonIgnore Approach
+
+### @JsonManagedReference/@JsonBackReference vs @JsonIgnore
+
+**Current Approach (@JsonManagedReference/@JsonBackReference):**
+
+- **Selective serialization**: Only prevents the back-reference (`CarExtras.carFK`) from being serialized while keeping the forward reference (`Car.carExtras`) intact
+- **Maintains relationship data**: When you serialize a [Car](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-boot/src/main/java/dev/app/rentingCar_boot/model/Car.java:15:0-277:1), you still get all its [CarExtras](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-boot/src/main/java/dev/app/rentingCar_boot/model/CarExtras.java:6:0-103:1) in the JSON response
+- **Bidirectional control**: Jackson understands the relationship direction and handles it intelligently
+- **API-friendly**: REST endpoints return complete car data including extras, which is what clients typically expect
+- **Relationship preservation**: The parent-child relationship is maintained in the JSON structure
+
+**Alternative @JsonIgnore Approach:**
+
+- **Complete exclusion**: Would completely hide either `Car.carExtras` OR `CarExtras.carFK` from ALL JSON serialization
+- **Data loss**: If applied to `Car.carExtras`, clients would never see car extras in API responses
+- **Inflexible**: Cannot selectively control which direction of the relationship to serialize
+- **Less intuitive**: Requires choosing which side of the relationship to completely ignore
+- **Limited use case**: Better suited for internal fields that should never be exposed via API
+
+> **Recommendation**: Our current implementation using `@JsonManagedReference`/`@JsonBackReference` is the superior approach for this use case as it provides the optimal balance between preventing circular references while maintaining meaningful API responses

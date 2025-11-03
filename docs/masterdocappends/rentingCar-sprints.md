@@ -1,20 +1,16 @@
 # rentingCar sprints
 
-`version document: v4.5`
+`version document: v5.0`
 
 ## Current sprint
 
-### Week #06
+### Week #07
 
-| Version | Title                                                                            | Description                                   | Status   | Date  |
-| ------- | -------------------------------------------------------------------------------- | --------------------------------------------- | -------- | ----- |
-| v4.0    | interface GenerateBookingService                                                 | crete `interface`                             | e8fe2a9  | 27/10 |
-| v4.1    | ModifyBookingService                                                             | create `inteface` and draft implemented class | 5ca859b  | 27/10 |
-| v4.2    | generateAvailableDates(2026,car);                                                | at  PopulateCar                               | 05e5989a | 27/10 |
-| v4.3    | testGenerateBooking mock                                                         | at bookingTest                                | 554f2c2e | 27/10 |
-| v4.4    | mock BookingTests INTERCEPTOR no real daata at db, testFindByBookingDateLessThan | query at mock bookingTest                     | 2286ecfc | 28/10 |
-| v4.4.1  | BookingTests testFindByBookingDateLessThan_DB                                    | query at bookingTest                          | cb8dd61e | 28/10 |
-| v4.5    | reat controller + postman                                                        | generateBooking                               | f5131ea2 | 31/10 |
+| Version | Title | Description | Status | Date |
+| ------- | ----- | ----------- | ------ | ---- |
+| v4.5    |       |             |        |      |
+
+## Vaadin Hilla Version
 
 ## Old Sprints Boot Version
 
@@ -54,6 +50,18 @@
 | v3.1.2  | car availability 2/3     | Implement Service and annotations tfor HashMap attribute at car         | 6ae4c077 | 21/10 |
 | v3.1.3  | car availability 3/3     | Test Service with fake data                                             | b744704a | 21/10 |
 | v3.2    | generateBooking          | generateBooking orchestrator                                            | df87e05d | 23/10 |
+
+### Week #06
+
+| Version | Title                                                                            | Description                                   | Status   | Date  |
+| ------- | -------------------------------------------------------------------------------- | --------------------------------------------- | -------- | ----- |
+| v4.0    | interface GenerateBookingService                                                 | crete `interface`                             | e8fe2a9  | 27/10 |
+| v4.1    | ModifyBookingService                                                             | create `inteface` and draft implemented class | 5ca859b  | 27/10 |
+| v4.2    | generateAvailableDates(2026,car);                                                | at  PopulateCar                               | 05e5989a | 27/10 |
+| v4.3    | testGenerateBooking mock                                                         | at bookingTest                                | 554f2c2e | 27/10 |
+| v4.4    | mock BookingTests INTERCEPTOR no real daata at db, testFindByBookingDateLessThan | query at mock bookingTest                     | 2286ecfc | 28/10 |
+| v4.4.1  | BookingTests testFindByBookingDateLessThan_DB                                    | query at bookingTest                          | cb8dd61e | 28/10 |
+| v4.5    | reat controller + postman                                                        | generateBooking                               | f5131ea2 | 31/10 |
 
 ## Old Sprints Quickstart Maven Version
 
