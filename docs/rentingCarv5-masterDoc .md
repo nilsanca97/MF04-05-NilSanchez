@@ -62,6 +62,74 @@ In our car rental app, it would enable real-time availability updates, instant b
 
 The framework abstracts the complexity of bidirectional communication, providing annotations like `@Push` to enable real-time features. It ensures reliable message delivery and maintains session state during network interruptions.
 
+
+
+## UI Low Fidelity Wireframe: Booking Flow
+
+
+
+![](https://raw.githubusercontent.com/AlbertProfe/rentingCarTest/refs/heads/master/docs/ui/create_booking.drawio.png)
+
+> This low-fidelity wireframe illustrates the basic user flow for creating and confirming a car booking within the application. It provides a conceptual overview of navigation and key UI components without finalized design styling.
+
+### 1. Home View
+
+- Displays a simple navigation section with the text “Home View”.
+
+- Includes a “BOOKING” button.
+
+- The button navigates the user to the **Home Booking View**.-
+
+### 2. Home Booking View
+
+- Header: “Home Booking View”.
+
+- Displays client information (hardcoded as **Albert Profe**).
+
+- Dropdown for **car selection**.
+
+- Calendar control for **date selection**.
+
+- Input field labeled **Qty days** for specifying the number of booking days.
+
+- Action button labeled **Create BOOKING**.
+
+- On click, the flow proceeds to the **Home Result View**.
+
+### 3. Home Result View
+
+- Header: “Home Result View”.
+
+- Displays a summary card confirming successful booking details:
+  
+  - Booking ID
+  
+  - Client name
+  
+  - Car details
+  
+  - Start date
+  
+  - Duration
+  
+  - Total amount
+  
+  - Booking status
+
+- Action button labeled **Go to Booking** for navigating to the booking record or details page.
+
+### Purpose
+
+<mark>The wireframe’s goal is to visualize the key steps and navigation structure</mark> for the car booking process before detailed UI design and implementation. It defines:
+
+- User navigation between views.
+
+- Core interaction elements (buttons, inputs, calendar).
+
+- Output confirmation layout for successful booking creation.
+
+
+
 ## UML Data Model
 
 #### CLASS Car
