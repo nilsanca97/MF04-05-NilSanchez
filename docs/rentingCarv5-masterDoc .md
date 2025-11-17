@@ -1,6 +1,6 @@
 # rentingCar v5
 
-`version document: v5.0`
+`version document: v5.1`
 
 ## Goal & Summary
 
@@ -30,9 +30,98 @@
 ## Tree
 
 ```
-[Mon Oct 27 08:10:47] albert@albert-VirtualBox:~/MyProjects/Sandbox/rentingCarTest/rentingCar-boot/src (master)
-$ tree
+st/rentingCar-vaadin (master)
+$ tree -L 1
+.
+├── LICENSE.md
+├── mvnw
+├── mvnw.cmd
+├── node_modules
+├── package.json
+├── package-lock.json
+├── pom.xml
+├── README.md
+├── src
+└── main
+|   ├── frontend
+|   │   ├── generated
+|   │   │   ├── ...
+|   │   ├── index.html
+|   │   ├── themes
+|   │   │   └── rentingcartest-vaadin
+|   │   └── views
+|   │       ├── bookings.tsx
+|   │       ├── cars.tsx
+|   │       ├── @index.tsx
+|   │       └── @layout.tsx
+|   ├── java
+|   │   └── dev
+|   │       └── app
+|   |           └── rentingcartestvaadin
+|   |               └── Application.java
+|   └── resources
+|        ├── application.properties
+|        ├── banner.txt
+|        └── META-INF
+|            └── resources
+├── target
+├── tsconfig.json
+├── types.d.ts
+├── vite.config.ts
+└── vite.generated.ts
+
+
+
+generated:
+
+└── main
+    ├── frontend
+    │   ├── generated
+    │   │   ├── file-routes.json
+    │   │   ├── file-routes.ts
+    │   │   ├── flow
+    │   │   ├── index.tsx
+    │   │   ├── jar-resources
+    │   │   ├── jsx-dev-transform
+    │   │   ├── layouts.json
+    │   │   ├── routes.tsx
+    │   │   ├── theme.d.ts
+    │   │   ├── theme.js
+    │   │   ├── theme-rentingcartest-vaadin.components.generated.js
+    │   │   ├── theme-rentingcartest-vaadin.generated.js
+    │   │   ├── theme-rentingcartest-vaadin.global.generated.js
+    │   │   ├── vaadin-featureflags.js
+    │   │   ├── vaadin-react.tsx
+    │   │   ├── vaadin.ts
+    │   │   └── vite-devmode.ts
 ```
+
+Project structure
+
+<table style="width:100%; text-align: left;">  
+  <tr><th>Directory</th><th>Description</th></tr>  
+  <tr><td><code>src/main/frontend/</code></td><td>Client-side source directory</td></tr>  
+  <tr><td>    <code>index.html</code></td><td>HTML template</td></tr>  
+  <tr><td>    <code>index.ts</code></td><td>Frontend   
+entrypoint, bootstraps a React application</td></tr>  
+  <tr><td>    <code>routes.tsx</code></td><td>React Router routes definition</td></tr>  
+  <tr><td>    <code>MainLayout.tsx</code></td><td>Main   
+layout component, contains the navigation menu, uses <a href="https://hilla.dev/docs/react/components/app-layout">  
+App Layout</a></td></tr>  
+  <tr><td>    <code>views/</code></td><td>UI view   
+components</td></tr>  
+  <tr><td>    <code>themes/</code></td><td>Custom    
+CSS styles</td></tr>  
+  <tr><td><code>src/main/java/<groupId>/</code></td><td>Server-side   
+source directory, contains the server-side Java views</td></tr>  
+  <tr><td>    <code>Application.java</code></td><td>Server entry-point</td></tr>  
+</table>
+
+Useful links
+
+- Read the documentation at [hilla.dev/docs](https://hilla.dev/docs/).  
+- Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Forum](https://vaadin.com/forum).  
+- Report issues, create pull requests in [GitHub](https://github.com/vaadin/hilla).
 
 ## Vaadin
 
@@ -45,6 +134,32 @@ You have **two approaches** for adding Vaadin to your car rental project:
 **2. Fresh Start Approach:** Create a new Vaadin Spring Boot project using Vaadin's starter template, then copy your existing model classes, repositories, and services. 
 
 - This ensures clean Vaadin integration without legacy dependencies but requires more setup time.
+
+### Framework of frameworks
+
+`Vaadin Hilla` can be described as a “*framework of frameworks*” because it unifies backend and frontend technologies into one cohesive development model. 
+
+> It blends Spring Boot, TypeScript, and React under a single build system while preserving full-stack type safety and fast productivity.
+
+- Vaadin Hilla sits on top of **Spring Boot**, using its robust Java backend architecture to handle business logic, REST endpoints, and dependency injection.
+
+- It generates **TypeScript interfaces automatically** from Java endpoints, ensuring type-safe communication between client and server.
+
+- The frontend layer combines **React with Vite and npm**, allowing developers to use familiar JavaScript tooling, libraries, and hot-reload development.
+
+- **Hilla endpoints** act as strongly typed bridges: each endpoint method written in Java automatically exposes a TypeScript API for React components without manual REST or GraphQL setup.
+
+- The use of **.tsx files** enables JSX-based UI creation with React syntax, supporting modern web component design.
+
+- **Lumo**, Vaadin’s design system, extends CSS customization to seamlessly style the app, providing both theme variables and reusable UI components.
+
+- Built-in **routing** with React Router integrates smoothly for single-page navigation, giving consistent state handling and URL management.
+
+- For legacy Vaadin apps or hybrid use cases, **Atmosphere** (websocket/push support) can enhance real-time communication between front and back layers.
+
+- **Maven integration** with Spring Boot simplifies dependency management and builds, keeping Java and npm workflows in one streamlined process.
+
+All together, Vaadin Hilla harmonizes multiple open-source ecosystems—Spring, React, Vite, Maven—into a unified “framework of frameworks” that accelerates full-stack development without configuration overhead.
 
 ### Atmosphere Framework
 
@@ -62,11 +177,27 @@ In our car rental app, it would enable real-time availability updates, instant b
 
 The framework abstracts the complexity of bidirectional communication, providing annotations like `@Push` to enable real-time features. It ensures reliable message delivery and maintains session state during network interruptions.
 
+### Entry Point React
+
+> The entry point in React for a Vaadin Hilla app is the layout file, usually named `@layout.tsx`. 
+
+It defines the main structure of the web interface using components like `AppLayout`, `Drawer`, and `Outlet`. 
+
+The layout <mark>manages navigation and page rendering</mark>:
+
+- It uses `React Router` to display different views, and signals to control the browser’s title dynamically. 
+
+- The `MainLayout` includes a side navigation menu, a header, and space for nested views. 
+
+- The `Drawer` in Vaadin Hilla’s MainLayout is the side panel that holds the navigation menu and app sections. It toggles open or closed for easy access.
+
+- The `Outlet` is a placeholder where routed pages render. When users navigate, Outlet dynamically loads the corresponding React view inside the main layout.
+
+- When the app runs, this layout acts as the **common wrapper** that loads first and connects all pages inside the React-Vaadin environment.
+
 
 
 ## UI Low Fidelity Wireframe: Booking Flow
-
-
 
 ![](https://raw.githubusercontent.com/AlbertProfe/rentingCarTest/refs/heads/master/docs/ui/create_booking.drawio.png)
 
@@ -128,7 +259,11 @@ The framework abstracts the complexity of bidirectional communication, providing
 
 - Output confirmation layout for successful booking creation.
 
+## Screenshot
 
+First render:
+
+![](https://albertprofe.dev/images/ifcd0021-1-25/hilla-first-render.png)
 
 ## UML Data Model
 
