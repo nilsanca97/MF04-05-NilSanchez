@@ -1,6 +1,6 @@
 # rentingCar v5
 
-`version document: v5.1`
+`version document: v5.2`
 
 ## Goal & Summary
 
@@ -11,7 +11,7 @@
 > We are adding the view: we are migrating to **Vaadin**
 
 - Reference project: [Spring Boot: H2 DB and Thymeleaf – albertprofe wiki](https://albertprofe.dev/springboot/boot-what-create-th-h2.html)
-- Web stack parsing: [rentingCarTest/docs/rentingCar-sprints.md at master · AlbertProfe/rentingCarTest · GitHub](https://github.com/AlbertProfe/rentingCarTest/blob/master/docs/masterdocappends/WebStackParsing.md)
+- Web stack parsing: [rentingCarTest/docs/ at master · AlbertProfe/rentingCarTest · GitHub](https://github.com/AlbertProfe/rentingCarTest/blob/master/docs/masterdocappends/WebStackParsing.md)
 - Spring Boot Project:
   - Microservices: https://spring.io/
   - Spring Boot is open-source: [GitHub - spring-projects/spring-boot: Spring Boot helps you to create Spring-powered, production-grade applications and services with absolute minimum fuss.](https://github.com/spring-projects/spring-boot)
@@ -22,10 +22,14 @@
   - [Vaadin Flow](/springboot/boot-concepts-vaadin-flow.qmd)
   - [Vaadin illa](/springboot/boot-concepts-vaadin-hilla.qmd)
   - [Atmosphere](https://github.com/Atmosphere/atmosphere)
+- Vaadin Enpoints:
+  - https://vaadin.com/docs/latest/components/auto-crud
+    
+    
 
-## Version
+## Commits
 
-- [rentingCarTest/docs/rentingCar-sprints.md at master · AlbertProfe/rentingCarTest · GitHub](https://github.com/AlbertProfe/rentingCarTest/blob/master/docs/masterdocappends/rentingCar-sprints.md)
+- [Commits · AlbertProfe/rentingCarTest · GitHub](https://github.com/AlbertProfe/rentingCarTest/commits/master/)
 
 ## Tree
 
@@ -94,6 +98,45 @@ generated:
     │   │   ├── vaadin-react.tsx
     │   │   ├── vaadin.ts
     │   │   └── vite-devmode.ts
+
+[Tue Nov 18 08:03:42] albert@albert-VirtualBox:~/MyProjects/Sandbox/rentingCarTest/rentingCar-vaadin/src/main/java/dev/app/rentingcartestvaadin (master)
+$ tree -L 3
+.
+├── Application.java
+├── controller
+│   ├── BookingRestController.java
+│   ├── CarEndpoint.java
+│   ├── CarRestController.java
+│   └── PopulateRestController.java
+├── model
+│   ├── Booking.java
+│   ├── CarExtras.java
+│   ├── Car.java
+│   ├── Client.java
+│   ├── DrivingCourse.java
+│   └── InssuranceCia.java
+├── repository
+│   ├── BookingRepository.java
+│   ├── CarExtrasRepository.java
+│   ├── CarRepository.java
+│   ├── ClientRepository.java
+│   ├── DrivingCourseRepository.java
+│   └── InssuranceCiaRepository.java
+├── service
+│   ├── BookingService.java
+│   ├── CarService.java
+│   ├── GenerateBooking.java
+│   ├── GenerateBookingService.java
+│   ├── ModifyBooking.java
+│   └── ModifyBookingService.java
+└── utils
+    ├── GenerateUUID.java
+    ├── PopulateAllTables.java
+    ├── PopulateBooking.java
+    ├── PopulateCar.java
+    ├── PopulateClient.java
+    ├── PopulateDrivingCourse.java
+    └── PopulateStatus.java
 ```
 
 Project structure
@@ -134,6 +177,7 @@ You have **two approaches** for adding Vaadin to your car rental project:
 **2. Fresh Start Approach:** Create a new Vaadin Spring Boot project using Vaadin's starter template, then copy your existing model classes, repositories, and services. 
 
 - This ensures clean Vaadin integration without legacy dependencies but requires more setup time.
+- <mark>Vaadin Migration step by step</mark>: [rentingCarTest/docs/ at master · AlbertProfe/rentingCarTest · GitHub](https://github.com/AlbertProfe/rentingCarTest/blob/master/docs/masterdocappends/vaadin-migration.md) 
 
 ### Framework of frameworks
 
@@ -195,8 +239,6 @@ The layout <mark>manages navigation and page rendering</mark>:
 
 - When the app runs, this layout acts as the **common wrapper** that loads first and connects all pages inside the React-Vaadin environment.
 
-
-
 ## UI Low Fidelity Wireframe: Booking Flow
 
 ![](https://raw.githubusercontent.com/AlbertProfe/rentingCarTest/refs/heads/master/docs/ui/create_booking.drawio.png)
@@ -205,23 +247,23 @@ The layout <mark>manages navigation and page rendering</mark>:
 
 ### 1. Home View
 
-- Displays a simple navigation section with the text “Home View”.
+- Displays a simple navigation section with the text header “`Home View`”.
 
 - Includes a “BOOKING” button.
+  
+  - The button navigates the user to the **Home Booking View**.-
 
-- The button navigates the user to the **Home Booking View**.-
+### 2. Home Generate Booking View
 
-### 2. Home Booking View
-
-- Header: “Home Booking View”.
-
-- Displays client information (hardcoded as **Albert Profe**).
-
-- Dropdown for **car selection**.
-
-- Calendar control for **date selection**.
-
-- Input field labeled **Qty days** for specifying the number of booking days.
+- Header: “`Home Generate Booking View`”.
+  
+  - Displays client information (hardcoded as **Albert Profe**).
+  
+  - Dropdown for **car selection**.
+  
+  - Calendar control for **date selection**.
+  
+  - Input field labeled **Qty days** for specifying the number of booking days.
 
 - Action button labeled **Create BOOKING**.
 
@@ -229,9 +271,9 @@ The layout <mark>manages navigation and page rendering</mark>:
 
 ### 3. Home Result View
 
-- Header: “Home Result View”.
+- Header: “`Home Result View`”.
 
-- Displays a summary card confirming successful booking details:
+- Displays a summary card confirming s`uccessful booking details`:
   
   - Booking ID
   
@@ -258,6 +300,96 @@ The layout <mark>manages navigation and page rendering</mark>:
 - Core interaction elements (buttons, inputs, calendar).
 
 - Output confirmation layout for successful booking creation.
+
+## UI AutoCrud: Cars CRUD
+
+> Auto CRUD is a component that provides CRUD functionality (i.e., Create, Read, Update, Delete) based on a Java backend service. It includes a sortable, filterable and lazy-loaded grid, as well as a form for creating, updating and deleting items.
+
+- https://vaadin.com/docs/latest/components/auto-crud
+
+Code: React comonent view, endpoint and repository:
+
+```java
+//HomeView
+import { AutoCrud } from '@vaadin/hilla-react-crud';
+import CarModel from 'Frontend/generated/dev/app/rentingcartestvaadin/model/CarModel';
+import { CarEndpoint } from 'Frontend/generated/endpoints';
+
+
+import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
+
+export const config: ViewConfig = { menu: { order: 0, icon: 'line-awesome/svg/home-solid.svg' }, title: 'Home' };
+
+export default function HomeView() {
+  return (
+    <div className="flex flex-col h-full items-center justify-center p-l text-center box-border">
+      <AutoCrud service={CarEndpoint} model={CarModel} />
+    </div>
+  );
+}
+
+
+//CarEndpoint
+@BrowserCallable
+@AnonymousAllowed
+public class CarEndpoint
+        extends CrudRepositoryService<Car, String, CarRepository> {
+}
+
+
+//CarRepository
+public interface CarRepository extends CrudRepository<Car, String>, JpaSpecificationExecutor<Car> {}
+```
+
+### Current Data Size Analysis
+
+**Response Size**: 45,042 bytes (≈45 KB) for 1,000 cars
+
+- **Per car average**: ~45 bytes per car
+- **Content-Type**: JSON format
+- **Status**: 200 OK (successful response) 
+
+**Performance Metrics and Network Transfer**:
+
+- **Size**: 45 KB is relatively small for modern web applications
+- **Typical load time**: Should be under 1 second on most connections
+- **Mobile 3G**: ~0.5-1 seconds
+- **Broadband**: ~0.1-0.3 seconds
+
+### Why It's So Efficient
+
+The response is surprisingly small because of smart optimizations in our [Car](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-vaadin/src/main/java/dev/app/rentingcartestvaadin/model/Car.java:16:0-288:1) entity:
+
+1. **`availableDates` Map is `@JsonIgnore`** (line 44) - This prevents the massive 365-entry HashMap from being serialized
+2. **Compact summary via `@JsonProperty`** (line 54) - Instead returns `availabilityRanges` using [formatAvailabilityRanges()](cci:1://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-vaadin/src/main/java/dev/app/rentingcartestvaadin/model/Car.java:182:4-250:5)
+3. **`bookings` are `@JsonIgnore`** (line 40) - Prevents lazy loading issues and reduces payload
+4. **Range compression** - Groups consecutive dates into readable ranges instead of individual timestamps
+
+## @RestController to populate
+
+```java
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
+public class PopulateRestController {
+
+    @Autowired
+    private PopulateAllTables populateAllTables;
+
+    @PostMapping("/populate")
+    public String populateAllTables(@RequestParam int qty) {
+        try {
+            return populateAllTables.populateAllTables(qty);
+        } catch (Exception e) {
+            return "Error populating tables: " + e.getMessage();
+        }
+    }
+}
+```
+
+PopulateRestController purpose:
+
+> The [PopulateRestController](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-vaadin/src/main/java/dev/app/rentingcartestvaadin/controller/PopulateRestController.java:6:0-22:1) provides a **data seeding endpoint** for development and testing purposes. It exposes a `/api/populate` POST endpoint that accepts a `qty` parameter to generate sample data for the car rental system.
 
 ## Screenshot
 
@@ -412,5 +544,166 @@ JPA/Hibernate Settings
 ## POM.XML
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- Project from https://start.vaadin.com/project/fcb10613-d4e9-45cb-ba80-7c7ed3de74ee -->
+    <groupId>dev.app.rentingcartestvaadin</groupId>
+    <artifactId>rentingcartest-vaadin</artifactId>
+    <name>rentingcartest-vaadin</name>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
+    <properties>
+        <java.version>21</java.version>
+        <vaadin.version>24.9.5</vaadin.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.7</version>
+    </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.parttio</groupId>
+            <artifactId>line-awesome</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>spring-boot:run</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-maven-plugin</artifactId>
+                <version>${vaadin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-frontend</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.43.0</version>
+                <configuration>
+                    <java>
+                        <palantirJavaFormat>
+                            <version>2.50.0</version>
+                        </palantirJavaFormat>
+                    </java>
+                    <typescript>
+                        <includes>
+                            <include>src/main/frontend/**/*.ts</include>
+                            <include>src/main/frontend/**/*.tsx</include>
+                        </includes>
+                        <excludes>
+                            <exclude>src/main/frontend/generated/**</exclude>
+                        </excludes>
+                        <prettier>
+                            <prettierVersion>3.3.3</prettierVersion>
+                            <configFile>.prettierrc.json</configFile>
+                        </prettier>
+                    </typescript>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <!-- Production mode is activated using -Pproduction -->
+            <id>production</id>
+            <dependencies>
+                <!-- Exclude development dependencies from production -->
+                <dependency>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>com.vaadin</groupId>
+                            <artifactId>vaadin-dev</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.vaadin</groupId>
+                        <artifactId>vaadin-maven-plugin</artifactId>
+                        <version>${vaadin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>build-frontend</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
 ```
