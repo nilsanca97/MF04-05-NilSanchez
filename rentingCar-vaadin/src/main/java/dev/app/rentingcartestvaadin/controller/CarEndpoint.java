@@ -1,3 +1,4 @@
+/*
 package dev.app.rentingcartestvaadin.controller;
 
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -10,4 +11,4 @@ import dev.app.rentingcartestvaadin.repository.CarRepository;
 @AnonymousAllowed
 public class CarEndpoint
         extends CrudRepositoryService<Car, String, CarRepository> {
-}
+}*/
