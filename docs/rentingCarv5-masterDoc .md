@@ -10,7 +10,10 @@
 > 
 > We are adding the view: we are migrating to **Vaadin**
 
-- Reference project: [Spring Boot: H2 DB and Thymeleaf – albertprofe wiki](https://albertprofe.dev/springboot/boot-what-create-th-h2.html)
+- Reference project:   
+  - Basic project  [Spring Boot: H2 DB and Thymeleaf – albertprofe wiki](https://albertprofe.dev/springboot/boot-what-create-th-h2.html)
+  - [Sculptures Wiki](https://github.com/AlbertProfe/sculptures/wiki)
+  - [spaceX codesandbox launches](https://codesandbox.io/p/sandbox/fetch-data-example-vqk726)
 - Web stack parsing: [rentingCarTest/docs/ at master · AlbertProfe/rentingCarTest · GitHub](https://github.com/AlbertProfe/rentingCarTest/blob/master/docs/masterdocappends/WebStackParsing.md)
 - Spring Boot Project:
   - Microservices: https://spring.io/
@@ -20,12 +23,11 @@
 - Vaadin Project:
   - [Vaadin playground](https://start.vaadin.com/app/p)
   - [Vaadin Flow](/springboot/boot-concepts-vaadin-flow.qmd)
-  - [Vaadin illa](/springboot/boot-concepts-vaadin-hilla.qmd)
+  - [Vaadin Hilla](/springboot/boot-concepts-vaadin-hilla.qmd)
   - [Atmosphere](https://github.com/Atmosphere/atmosphere)
 - Vaadin Enpoints:
-  - https://vaadin.com/docs/latest/components/auto-crud
-    
-    
+  - [Vaadin React AutoCurd](https://vaadin.com/docs/latest/components/auto-crud)
+  - [Vaadin endpoints calling Java](https://vaadin.com/docs/latest/hilla/guides/endpoints)
 
 ## Commits
 
@@ -230,13 +232,9 @@ It defines the main structure of the web interface using components like `AppLay
 The layout <mark>manages navigation and page rendering</mark>:
 
 - It uses `React Router` to display different views, and signals to control the browser’s title dynamically. 
-
 - The `MainLayout` includes a side navigation menu, a header, and space for nested views. 
-
 - The `Drawer` in Vaadin Hilla’s MainLayout is the side panel that holds the navigation menu and app sections. It toggles open or closed for easy access.
-
 - The `Outlet` is a placeholder where routed pages render. When users navigate, Outlet dynamically loads the corresponding React view inside the main layout.
-
 - When the app runs, this layout acts as the **common wrapper** that loads first and connects all pages inside the React-Vaadin environment.
 
 ## UI Low Fidelity Wireframe: Booking Flow
@@ -255,40 +253,25 @@ The layout <mark>manages navigation and page rendering</mark>:
 
 ### 2. Home Generate Booking View
 
-- Header: “`Home Generate Booking View`”.
-  
+- Header: “`Home Generate Booking View`”
   - Displays client information (hardcoded as **Albert Profe**).
-  
   - Dropdown for **car selection**.
-  
   - Calendar control for **date selection**.
-  
   - Input field labeled **Qty days** for specifying the number of booking days.
-
 - Action button labeled **Create BOOKING**.
-
 - On click, the flow proceeds to the **Home Result View**.
 
 ### 3. Home Result View
 
 - Header: “`Home Result View`”.
-
 - Displays a summary card confirming s`uccessful booking details`:
-  
   - Booking ID
-  
   - Client name
-  
   - Car details
-  
   - Start date
-  
   - Duration
-  
   - Total amount
-  
   - Booking status
-
 - Action button labeled **Go to Booking** for navigating to the booking record or details page.
 
 ### Purpose
@@ -296,9 +279,7 @@ The layout <mark>manages navigation and page rendering</mark>:
 <mark>The wireframe’s goal is to visualize the key steps and navigation structure</mark> for the car booking process before detailed UI design and implementation. It defines:
 
 - User navigation between views.
-
 - Core interaction elements (buttons, inputs, calendar).
-
 - Output confirmation layout for successful booking creation.
 
 ## UI AutoCrud: Cars CRUD
@@ -356,7 +337,7 @@ public interface CarRepository extends CrudRepository<Car, String>, JpaSpecifica
 - **Mobile 3G**: ~0.5-1 seconds
 - **Broadband**: ~0.1-0.3 seconds
 
-### Why It's So Efficient
+#### Why It's So Efficient
 
 The response is surprisingly small because of smart optimizations in our [Car](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-vaadin/src/main/java/dev/app/rentingcartestvaadin/model/Car.java:16:0-288:1) entity:
 
@@ -390,6 +371,54 @@ public class PopulateRestController {
 PopulateRestController purpose:
 
 > The [PopulateRestController](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-vaadin/src/main/java/dev/app/rentingcartestvaadin/controller/PopulateRestController.java:6:0-22:1) provides a **data seeding endpoint** for development and testing purposes. It exposes a `/api/populate` POST endpoint that accepts a `qty` parameter to generate sample data for the car rental system.
+
+## Car: Vaadin @Endpoint
+
+> Vaadin Hilla’s `@Endpoint` feature offers an efficient way to bridge backend and frontend development, significantly reducing integration time between Java and React. Instead of manually creating REST controllers, defining routes, and writing fetch logic, we can directly expose backend methods as type-safe APIs.
+> 
+> This approach automatically generates TypeScript clients for each endpoint, allowing React components to call functions like `CarEndpoint.getAllCars()` <mark>as if they were local.</mark>
+
+
+
+```java
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.hilla.Endpoint;
+import dev.app.rentingcartestvaadin.model.Car;
+import dev.app.rentingcartestvaadin.service.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Endpoint
+@AnonymousAllowed
+public class CarEndpoint {
+
+    @Autowired
+    CarService carService;
+
+    public Iterable<Car> getAllCars() {
+        return carService.findAll();
+    }
+}
+```
+
+React view to show cars just needs to call the Java class `@Endpoint CarsEndpoint` and then the method `getAllCars(`)`:  const carsData = await<mark> CarEndpoint.getAllCars();</mark>
+
+```js
+ useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        setLoading(true);
+        const carsData = await CarEndpoint.getAllCars();
+        setCars(Array.from(carsData));
+      } catch (err) {
+        setError('Failed to fetch cars: ' + (err as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
+  }, []);
+```
 
 ## Screenshot
 
