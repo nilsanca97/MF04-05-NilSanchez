@@ -378,8 +378,6 @@ PopulateRestController purpose:
 > 
 > This approach automatically generates TypeScript clients for each endpoint, allowing React components to call functions like `CarEndpoint.getAllCars()` <mark>as if they were local.</mark>
 
-
-
 ```java
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.Endpoint;
