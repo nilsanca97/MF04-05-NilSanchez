@@ -6,15 +6,16 @@ We're touching on one of the most important **architectural decision points** in
 
 Here’s how to classify them properly in the context of Spring Boot systems:
 
-| Delivery Mechanism                   | Architectural Style                      | Client Type                   | Rendering Responsibility       | Real-time Push?                   | Key Spring/Vaadin Tech                      |
-| ------------------------------------ | ---------------------------------------- | ----------------------------- | ------------------------------ | --------------------------------- | ------------------------------------------- |
-| Classic MVC with Thymeleaf           | Server-Side Rendering (SSR)              | Traditional HTML browser      | Server (Thymeleaf templates)   | No                                | @Controller + Thymeleaf                     |
-| @RestController + React/Angular      | Backend-for-Frontend (BFF) / SPA         | Rich JavaScript frontend      | Client (React/Vue/etc.)        | Via polling/Long-polling          | @RestController + Jackson                   |
-| Vaadin Flow (pure Java views)        | Server-Side UI with push                 | Vaadin-managed DOM            | Server (Java components → DOM) | Yes (WebSocket/SSE)               | @Route, Push, UI.init()                     |
-| Hilla (@Endpoint + TypeScript views) | Type-safe Full-Stack Reactive            | Lite frontend (React + TS)    | Client + Server collaboration  | Yes (automatic via SSE/WebSocket) | @Endpoint, @BrowserCallable, Hilla          |
-| SSE with SseEmitter                  | Server-Sent Events (unidirectional)      | Any (Vaadin, React, plain JS) | Client updates UI on event     | Yes (server → client only)        | SseEmitter, @GetMapping → text/event-stream |
-| WebSocket (Spring or Atmosphere)     | Bidirectional real-time                  | Any                           | Client                         | Yes (both ways)                   | @MessageMapping, STOMP                      |
-| @BrowserCallable (Hilla)             | Secure server method call from client TS | TypeScript client             | Server executes logic          | Sync call                         | @BrowserCallable in @Endpoint               |
+| Delivery Mechanism                   | Architectural Style                      | Client Type                   | Rendering Responsibility                              | Real-time Push?                          | Key Spring/Vaadin Tech                      |
+| ------------------------------------ | ---------------------------------------- | ----------------------------- | ----------------------------------------------------- | ---------------------------------------- | ------------------------------------------- |
+| Classic MVC with Thymeleaf           | Server-Side Rendering (SSR)              | Traditional HTML browser      | Server (Thymeleaf templates)                          | No                                       | @Controller + Thymeleaf                     |
+| @RestController + React/Angular      | Backend-for-Frontend (BFF) / SPA         | Rich JavaScript frontend      | Client (React/Vue/etc.)                               | Via polling/Long-polling                 | @RestController + Jackson                   |
+| Thymeleaf + htmx                     | Hypermedia-Driven SSR                    | HTML browser with htmx        | Server (Thymeleaf fragments) + client-side HTML swaps | Partial (via polling, WS/SSE extensions) | @Controller + Thymeleaf + htmx              |
+| Vaadin Flow (pure Java views)        | Server-Side UI with push                 | Vaadin-managed DOM            | Server (Java components → DOM)                        | Yes (WebSocket/SSE)                      | @Route, Push, UI.init()                     |
+| Hilla (@Endpoint + TypeScript views) | Type-safe Full-Stack Reactive            | Lite frontend (React + TS)    | Client + Server collaboration                         | Yes (automatic via SSE/WebSocket)        | @Endpoint, @BrowserCallable, Hilla          |
+| SSE with SseEmitter                  | Server-Sent Events (unidirectional)      | Any (Vaadin, React, plain JS) | Client updates UI on event                            | Yes (server → client only)               | SseEmitter, @GetMapping → text/event-stream |
+| WebSocket (Spring or Atmosphere)     | Bidirectional real-time                  | Any                           | Client                                                | Yes (both ways)                          | @MessageMapping, STOMP                      |
+| @BrowserCallable (Hilla)             | Secure server method call from client TS | TypeScript client             | Server executes logic                                 | Sync call                                | @BrowserCallable in @Endpoint               |
 
 ### So what are we really choosing between?
 
