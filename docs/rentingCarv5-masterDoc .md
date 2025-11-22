@@ -374,7 +374,7 @@ PopulateRestController purpose:
 
 > The [PopulateRestController](cci:2://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-vaadin/src/main/java/dev/app/rentingcartestvaadin/controller/PopulateRestController.java:6:0-22:1) provides a **data seeding endpoint** for development and testing purposes. It exposes a `/api/populate` POST endpoint that accepts a `qty` parameter to generate sample data for the car rental system.
 
-## Car: Vaadin @Endpoint
+## Cars: Vaadin @Endpoint & .tsx
 
 > Vaadin Hilla’s `@Endpoint` feature offers an efficient way to bridge backend and frontend development, significantly reducing integration time between Java and React. Instead of manually creating REST controllers, defining routes, and writing fetch logic, we can directly expose backend methods as type-safe APIs.
 > 
@@ -418,6 +418,148 @@ React view to show cars just needs to call the Java class `@Endpoint CarsEndpoin
 
     fetchCars();
   }, []);
+```
+
+## GenerateBooking: Vaadin @Endpoint & .tsx
+
+> The [@index.tsx](cci:7://file:///home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar-vaadin/src/main/frontend/views/@index.tsx:0:0-0:0) file is the home view component and serves as the main booking interface where users can create car reservations.
+
+**Key Features:**
+
+- **Hardcoded Client**: Uses a predefined client:
+  - *(Emma Smith, age 73, premium member) for all bookings*
+- **Car Selection**: Fetches and displays available cars from `CarEndpoint.getAllCars()` in a <mark>dropdown menu</mark> showing brand, model, plate, and daily price
+- **Booking Form**: Collects booking date (date picker) and rental duration (number of days)
+- **Date Handling**: Converts selected dates to Unix timestamps at 00:00:00 GMT for backend compatibility
+- **Booking Creation**: Calls `GenerateBookingEndpoint.generateBooking()` <mark>with client ID, car ID, epoch timestamp, and duration</mark>
+
+**UI Components:**
+
+- Loading state with diagram image
+- Error handling with red alert boxes
+- Client information display panel
+- Form with car dropdown, date picker, and days input
+- Success result display in green box
+- Responsive design with Tailwind CSS classes
+
+**State Management**: Uses React hooks (`useSate` and `useEffect`) for cars list, selected car, booking parameters, loading states, and error handling. The component follows the car booking system's Unix timestamp format <mark>epoch.</mark>
+
+### Skeleton
+
+```jsx
+import { ViewConfig } from '@vaadin/hilla-file-router/types.js';
+import { useEffect, useState } from 'react';
+import { CarEndpoint } from 'Frontend/generated/endpoints';
+import { GenerateBookingEndpoint } from 'Frontend/generated/endpoints';
+import Car from 'Frontend/generated/dev/app/rentingcartestvaadin/model/Car';
+import Client from 'Frontend/generated/dev/app/rentingcartestvaadin/model/Client';
+
+
+export const config: ViewConfig = {}
+
+// Hardcoded client
+const hardcodedClient: Client = {}
+ 
+
+export default function HomeView() {
+  const [cars, setCars] = useState<Car[]>([]);
+  const [selectedCar, setSelectedCar] = useState<Car | null>(null);
+  const [bookingDate, setBookingDate] = useState<string>('');
+  const [qtyDays, setQtyDays] = useState<number>(1);
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [bookingResult, setBookingResult] = useState<string | null>(null);
+
+  useEffect(() => {
+        //...
+        const carsData = await CarEndpoint.getAllCars();
+        // ...
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+      // Convert date string to Unix timestamp (epoch seconds at 00:00:00 GMT)
+      const dateObj = new Date(bookingDate + 'T00:00:00.000Z');
+      const bookingDateEpoch = Math.floor(dateObj.getTime() / 1000);
+      // Call GenerateBookingEndpoint with IDs instead of full objects
+      const result = await GenerateBookingEndpoint.generateBooking(
+        hardcodedClient.id!,
+        selectedCar.id!,
+        bookingDateEpoch,
+        qtyDays
+      );
+      // Set the string result from the endpoint
+      setBookingResult(result || null);
+  };
+
+  if (loading) {return ( <p>Loading cars...</p>);}
+  if (error && !cars.length) {return (<p className="text-red-500">{error}</p> ); }
+
+  return (
+     <>
+      {/* Hardcoded Client Info */}
+        <p><strong>Name:</strong> {hardcodedClient.name} {hardcodedClient.lastName}</p>
+        <p><strong>Email:</strong> {hardcodedClient.email}</p>
+        <p><strong>Client subscription:</strong> {hardcodedClient.premium ? "Premium" : "Standard"}</p>
+      
+      {/* Error Display */}
+      {error && (<div>{error}</div>)}
+      
+      {/* Booking Form */}
+      <form onSubmit={handleSubmit}>
+        {/* Car Selection */}
+        <div>
+          <select
+            value={selectedCar?.id?.toString() || ''}
+            onChange={(e) => {
+              const carId = parseInt(e.target.value);
+              const car = cars.find(c => c.id?.toString() === carId.toString()) || null;
+              setSelectedCar(car);
+            }}
+          >
+            <option value="">Choose a car...</option>
+            {cars.map((car) => (
+              <option key={car.id} value={car.id?.toString() || ''}>
+                {car.brand} {car.model} - {car.plate} (€{car.price}/day)
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Date Input */}
+        <div>
+          <input
+            type="date"
+            value={bookingDate}
+            onChange={(e) => setBookingDate(e.target.value)}
+          />
+        </div>
+
+        {/* Quantity Days Input */}
+        <div>
+          <input
+            type="number"
+            value={qtyDays}
+            onChange={(e) => setQtyDays(parseInt(e.target.value) || 1)}
+          />
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+        >
+          {submitting ? 'Creating Booking...' : 'Generate Booking'}
+        </button>
+      </form>
+
+      {/* Booking Result */}
+      {bookingResult && (   
+         <pre className="whitespace-pre-wrap text-sm">{bookingResult}</pre>
+      )}
+    </>
+  );
+}
+
 ```
 
 ## Screenshot
