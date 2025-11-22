@@ -63,7 +63,7 @@ export default function HomeView() {
 
   if (loading) {
     return (
-      <VerticalLayout>
+      <VerticalLayout style={{ margin: '100px' }}>
         <h1>Generate Booking</h1>
         <p>Loading cars...</p>
         <ProgressBar indeterminate />
@@ -74,7 +74,7 @@ export default function HomeView() {
 
   if (error && !cars.length) {
     return (
-      <VerticalLayout>
+      <VerticalLayout style={{ margin: '100px' }}>
         <h1>Generate Booking</h1>
         <p>{error}</p>
         <img style={{ width: '800px' }} src="https://raw.githubusercontent.com/AlbertProfe/rentingCarTest/refs/heads/master/docs/ui/create_booking.drawio.png" />
@@ -141,11 +141,11 @@ export default function HomeView() {
   }));
 
   return (
-    <VerticalLayout>
+    <VerticalLayout style={{ margin: '100px' }}>
       <h1>Generate Booking</h1>
 
       <Details summary="Client Information" opened>
-        <VerticalLayout>
+        <VerticalLayout style={{ margin: '10px' }}>
           <p><strong>Name:</strong> {hardcodedClient.name} {hardcodedClient.lastName}</p>
           <p><strong>Email:</strong> {hardcodedClient.email}</p>
           <p><strong>Client subscription:</strong> {hardcodedClient.premium ? "Premium" : "Standard"}</p>
