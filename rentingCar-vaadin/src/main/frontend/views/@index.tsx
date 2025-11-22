@@ -4,6 +4,16 @@ import { CarEndpoint } from 'Frontend/generated/endpoints';
 import { GenerateBookingEndpoint } from 'Frontend/generated/endpoints';
 import Car from 'Frontend/generated/dev/app/rentingcartestvaadin/model/Car';
 import Client from 'Frontend/generated/dev/app/rentingcartestvaadin/model/Client';
+import { VerticalLayout } from '@vaadin/react-components/VerticalLayout.js';
+import { HorizontalLayout } from '@vaadin/react-components/HorizontalLayout.js';
+import { FormLayout } from '@vaadin/react-components/FormLayout.js';
+import { Select } from '@vaadin/react-components/Select.js';
+import { DatePicker } from '@vaadin/react-components/DatePicker.js';
+import { IntegerField } from '@vaadin/react-components/IntegerField.js';
+import { Button } from '@vaadin/react-components/Button.js';
+import { Details } from '@vaadin/react-components/Details.js';
+import { Notification } from '@vaadin/react-components/Notification.js';
+import { ProgressBar } from '@vaadin/react-components/ProgressBar.js';
 
 
 export const config: ViewConfig = {
@@ -50,16 +60,46 @@ export default function HomeView() {
     fetchCars();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+
+  if (loading) {
+    return (
+      <VerticalLayout>
+        <h1>Generate Booking</h1>
+        <p>Loading cars...</p>
+        <ProgressBar indeterminate />
+        <img style={{ width: '800px' }} src="https://raw.githubusercontent.com/AlbertProfe/rentingCarTest/refs/heads/master/docs/ui/create_booking.drawio.png" />
+      </VerticalLayout>
+    );
+  }
+
+  if (error && !cars.length) {
+    return (
+      <VerticalLayout>
+        <h1>Generate Booking</h1>
+        <p>{error}</p>
+        <img style={{ width: '800px' }} src="https://raw.githubusercontent.com/AlbertProfe/rentingCarTest/refs/heads/master/docs/ui/create_booking.drawio.png" />
+      </VerticalLayout>
+    );
+  }
+
+  const showError = (message: string) => {
+    Notification.show(message, { theme: 'error' });
+  };
+
+  const showSuccess = (message: string) => {
+    Notification.show(message, { theme: 'success' });
+  };
+
+  const handleSubmitInternal = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!selectedCar) {
-      setError('Please select a car');
+      showError('Please select a car');
       return;
     }
 
     if (!bookingDate) {
-      setError('Please select a booking date');
+      showError('Please select a booking date');
       return;
     }
 
@@ -82,122 +122,79 @@ export default function HomeView() {
 
       // Set the string result from the endpoint
       setBookingResult(result || null);
+      if (result) {
+        showSuccess('Booking created successfully!');
+      }
 
     } catch (err) {
-      setError('Failed to create booking: ' + (err as Error).message);
+      const errorMessage = 'Failed to create booking: ' + (err as Error).message;
+      setError(errorMessage);
+      showError(errorMessage);
     } finally {
       setSubmitting(false);
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex flex-col h-full items-center justify-center p-4">
-        <h1>Generate Booking</h1>
-        <p>Loading cars...</p>
-         <img style={{ width: '800px' }} src="https://raw.githubusercontent.com/AlbertProfe/rentingCarTest/refs/heads/master/docs/ui/create_booking.drawio.png" />
-      </div>
-    );
-  }
-
-  if (error && !cars.length) {
-    return (
-      <div className="flex flex-col h-full items-center justify-center p-4">
-        <h1>Generate Booking</h1>
-        <p className="text-red-500">{error}</p>
-         <img style={{ width: '800px' }} src="https://raw.githubusercontent.com/AlbertProfe/rentingCarTest/refs/heads/master/docs/ui/create_booking.drawio.png" />
-      </div>
-    );
-  }
+  const carItems = cars.map((car) => ({
+    label: `${car.brand} ${car.model} - ${car.plate} (€${car.price}/day)`,
+    value: car.id?.toString() || ''
+  }));
 
   return (
-     <div className="flex flex-col h-full items-center justify-center p-4">
-      <h1 className="text-2xl font-bold mb-4">Generate Booking</h1>
+    <VerticalLayout>
+      <h1>Generate Booking</h1>
 
-      {/* Hardcoded Client Info */}
-      <div className="mb-6 p-4 bg-gray-100 rounded-lg">
-        <h2 className="text-lg font-semibold mb-2">Client Information</h2>
-        <p><strong>Name:</strong> {hardcodedClient.name} {hardcodedClient.lastName}</p>
-        <p><strong>Email:</strong> {hardcodedClient.email}</p>
-        <p><strong>Client subscription:</strong> {hardcodedClient.premium ? "Premium" : "Standard"}</p>
-      </div>
+      <Details summary="Client Information" opened>
+        <VerticalLayout>
+          <p><strong>Name:</strong> {hardcodedClient.name} {hardcodedClient.lastName}</p>
+          <p><strong>Email:</strong> {hardcodedClient.email}</p>
+          <p><strong>Client subscription:</strong> {hardcodedClient.premium ? "Premium" : "Standard"}</p>
+        </VerticalLayout>
+      </Details>
 
-      {/* Error Display */}
-      {error && (
-        <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-          {error}
-        </div>
-      )}
+      <FormLayout>
+        <Select
+          label="Select Car"
+          placeholder="Choose a car..."
+          items={carItems}
+          value={selectedCar?.id?.toString() || ''}
+          onValueChanged={(e) => {
+            const carId = parseInt(e.detail.value);
+            const car = cars.find(c => c.id?.toString() === carId.toString()) || null;
+            setSelectedCar(car);
+          }}
+          disabled={submitting}
+        />
 
-      {/* Booking Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Car Selection */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Select Car:</label>
-          <select
-            value={selectedCar?.id?.toString() || ''}
-            onChange={(e) => {
-              const carId = parseInt(e.target.value);
-              const car = cars.find(c => c.id?.toString() === carId.toString()) || null;
-              setSelectedCar(car);
-            }}
-            className="w-full p-2 border rounded-md"
-            required
-            disabled={submitting}
-          >
-            <option value="">Choose a car...</option>
-            {cars.map((car) => (
-              <option key={car.id} value={car.id?.toString() || ''}>
-                {car.brand} {car.model} - {car.plate} (€{car.price}/day)
-              </option>
-            ))}
-          </select>
-        </div>
+        <DatePicker
+          label="Booking Date"
+          value={bookingDate}
+          onValueChanged={(e) => setBookingDate(e.detail.value)}
+          disabled={submitting}
+        />
 
-        {/* Date Input */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Booking Date:</label>
-          <input
-            type="date"
-            value={bookingDate}
-            onChange={(e) => setBookingDate(e.target.value)}
-            className="w-full p-2 border rounded-md"
-            required
-            disabled={submitting}
-          />
-        </div>
+        <IntegerField
+          label="Quantity of Days"
+          value={qtyDays.toString()}
+          min={1}
+          onValueChanged={(e) => setQtyDays(parseInt(e.detail.value) || 1)}
+          disabled={submitting}
+        />
 
-        {/* Quantity Days Input */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Quantity of Days:</label>
-          <input
-            type="number"
-            min="1"
-            value={qtyDays}
-            onChange={(e) => setQtyDays(parseInt(e.target.value) || 1)}
-            className="w-full p-2 border rounded-md"
-            required
-            disabled={submitting}
-          />
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 disabled:bg-gray-400"
+        <Button
+          theme="primary"
+          onClick={handleSubmitInternal}
           disabled={submitting}
         >
           {submitting ? 'Creating Booking...' : 'Generate Booking'}
-        </button>
-      </form>
+        </Button>
+      </FormLayout>
 
-      {/* Booking Result */}
       {bookingResult && (
-        <div className="mt-6 p-4 bg-green-100 border border-green-400 rounded-lg">
-          <h3 className="text-lg font-semibold mb-2">Booking Result:</h3>
-          <pre className="whitespace-pre-wrap text-sm">{bookingResult}</pre>
-        </div>
+        <Details summary="Booking Result" opened>
+          <pre>{bookingResult}</pre>
+        </Details>
       )}
-    </div>
+    </VerticalLayout>
   );
 }
