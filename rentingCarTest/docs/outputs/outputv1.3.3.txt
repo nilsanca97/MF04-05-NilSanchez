@@ -1,0 +1,108 @@
+/usr/lib/jvm/java-21-openjdk-amd64/bin/java -javaagent:/snap/intellij-idea-community/631/lib/idea_rt.jar=42463 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar/target/classes:/home/albert/.m2/repository/com/github/javafaker/javafaker/1.0.2/javafaker-1.0.2.jar:/home/albert/.m2/repository/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar:/home/albert/.m2/repository/org/yaml/snakeyaml/1.23/snakeyaml-1.23-android.jar:/home/albert/.m2/repository/com/github/mifmif/generex/1.0.2/generex-1.0.2.jar:/home/albert/.m2/repository/dk/brics/automaton/automaton/1.11-8/automaton-1.11-8.jar org.example.App
+Starting code...
+Cars from DB: 
+-------------------------
+Size DB: 100
+	Car{id='624', brand='Padberg, Frami and Stokes', model='Donatello', plate='B000FQ9CTY', year=1986, price=227.0}
+	Car{id='323', brand='Schimmel, Conn and Feest', model='Gauguin', plate='B0000DDZ3N', year=1987, price=227.0}
+	Car{id='7', brand='Emard Group', model='Pissarro', plate='B00065F3KG', year=2005, price=101.0}
+	Car{id='5964', brand='Weissnat-Turcotte', model='Renoir', plate='B000A6Y9HY', year=1991, price=69.0}
+	Car{id='39858', brand='Pfannerstill-Walsh', model='Donatello', plate='B000I6TI2C', year=1993, price=123.0}
+	Car{id='455587', brand='Douglas Inc', model='Munch', plate='B0000AB07P', year=2018, price=197.0}
+	Car{id='91683363', brand='Trantow-King', model='Degas', plate='B0001DJXAY', year=2002, price=213.0}
+	Car{id='0', brand='Wiegand, Heidenreich and Runolfsdottir', model='Rembrandt', plate='B000CDC7O2', year=1995, price=217.0}
+	Car{id='107816', brand='Jast-Rosenbaum', model='Dali', plate='B000A3PVZ6', year=1988, price=122.0}
+	Car{id='6197', brand='Nolan Group', model='Kandinsky', plate='B000GPHRW8', year=2018, price=226.0}
+	Car{id='5357', brand='Quitzon, Harvey and Doyle', model='Cezanne', plate='B000NKSTVO', year=2002, price=190.0}
+	Car{id='163', brand='Nitzsche, Stokes and Hilll', model='Magritte', plate='B000I6QKZU', year=1982, price=160.0}
+	Car{id='16130458', brand='Nolan Group', model='Winslow Homer', plate='B0000DIEOI', year=1997, price=50.0}
+	Car{id='2369524', brand='Schaden, Schamberger and Kassulke', model='Winslow Homer', plate='B000A1AUBI', year=1993, price=145.0}
+	Car{id='41548', brand='Grimes, Stehr and Koepp', model='Matisse', plate='B000IAQ8YO', year=1983, price=162.0}
+	Car{id='31', brand='Cronin-Wiza', model='Magritte', plate='B000A6PMBG', year=1998, price=53.0}
+	Car{id='638123', brand='Schneider, Gislason and Kshlerin', model='Pollock', plate='B000J42NY8', year=1996, price=174.0}
+	Car{id='33', brand='Kilback Group', model='Raphael', plate='B000A0A56Y', year=1994, price=152.0}
+	Car{id='462', brand='Hand, Koch and Mertz', model='Durer', plate='B000HU7P92', year=2015, price=190.0}
+	Car{id='5', brand='Klocko-Blanda', model='Caravaggio', plate='B000B5MVJM', year=1993, price=198.0}
+	Car{id='9026', brand='Rau-Marks', model='Raphael', plate='B000GTYMOK', year=2018, price=168.0}
+	Car{id='3', brand='Pfannerstill and Sons', model='Cezanne', plate='B000HW20EA', year=1994, price=180.0}
+	Car{id='5', brand='Wuckert-Lowe', model='Warhol', plate='B000A3PYLW', year=1986, price=98.0}
+	Car{id='241468', brand='Ankunding-Abernathy', model='Rubens', plate='B00069TDVW', year=2014, price=142.0}
+	Car{id='903', brand='Botsford and Sons', model='Da Vinci', plate='B000MW7MJ8', year=2014, price=159.0}
+	Car{id='22', brand='McCullough, Maggio and Koch', model='Diego Rivera', plate='B000BHP3T0', year=1995, price=95.0}
+	Car{id='4478', brand='Moen Group', model='Cezanne', plate='B000JTDF6I', year=1999, price=152.0}
+	Car{id='368146438', brand='Lehner LLC', model='Rembrandt', plate='B000GWKIMC', year=1999, price=222.0}
+	Car{id='3285', brand='Medhurst Group', model='Vettriano', plate='B0000DHF4M', year=2011, price=215.0}
+	Car{id='65', brand='Bradtke and Sons', model='Caravaggio', plate='B000J0NOTK', year=2010, price=54.0}
+	Car{id='3728', brand='Breitenberg Inc', model='El Greco', plate='B000GTYMOK', year=2002, price=101.0}
+	Car{id='783235956', brand='Little LLC', model='Edward Hopper', plate='B0000DJH5H', year=1986, price=193.0}
+	Car{id='68538', brand='Muller Inc', model='Durer', plate='B0000DHCHM', year=2011, price=22.0}
+	Car{id='64', brand='Koss-Ryan', model='Pissarro', plate='B000BY634C', year=1985, price=64.0}
+	Car{id='66', brand='Wolf and Sons', model='Monet', plate='B000IBJ3OA', year=2001, price=190.0}
+	Car{id='7133', brand='Stracke and Sons', model='Kandinsky', plate='B00067PATS', year=2004, price=78.0}
+	Car{id='874444', brand='Beier, Blanda and Bruen', model='Bernini', plate='B000ML8E7I', year=2000, price=139.0}
+	Car{id='851038093', brand='Schuppe, Hintz and Harris', model='Monet', plate='B0000ACB9R', year=1983, price=64.0}
+	Car{id='6632', brand='Thiel-Batz', model='Degas', plate='B000A2MJY8', year=1993, price=147.0}
+	Car{id='1565', brand='Towne-Abbott', model='Winslow Homer', plate='B000HU5ZIA', year=1981, price=177.0}
+	Car{id='7086682', brand='Jenkins, Larkin and Howe', model='Gauguin', plate='B0000W463K', year=1994, price=188.0}
+	Car{id='11827066', brand='Koch, Ullrich and Turner', model='Renoir', plate='B0000DYZL0', year=1982, price=239.0}
+	Car{id='198170', brand='Kessler-Ankunding', model='Chagall', plate='B000AOMOVE', year=1989, price=71.0}
+	Car{id='945719392', brand='Rippin and Sons', model='Ansel Adams', plate='B000ABNX30', year=2004, price=74.0}
+	Car{id='4', brand='Barrows, Murphy and Altenwerth', model='Kandinsky', plate='B000FNP6CY', year=1998, price=228.0}
+	Car{id='753941', brand='Labadie-Durgan', model='Bernini', plate='B0000DECN1', year=1991, price=95.0}
+	Car{id='7788114', brand='Nikolaus Inc', model='Degas', plate='B000A6LR6K', year=2009, price=41.0}
+	Car{id='1', brand='Halvorson-Terry', model='Monet', plate='B000JR91YA', year=2006, price=65.0}
+	Car{id='35956845', brand='Grant Inc', model='Dali', plate='B0002IQM66', year=1993, price=245.0}
+	Car{id='85149', brand='Zemlak-Brown', model='Titian', plate='B000IT4T9Q', year=2000, price=68.0}
+	Car{id='752', brand='Lebsack, Spinka and Ruecker', model='Escher', plate='B00097DN12', year=2004, price=132.0}
+	Car{id='4', brand='Romaguera LLC', model='Pissarro', plate='B000BHP4DA', year=1990, price=141.0}
+	Car{id='950352156', brand='Prohaska-Kohler', model='Da Vinci', plate='B0000DHCZT', year=2004, price=112.0}
+	Car{id='0', brand='Nicolas LLC', model='Donatello', plate='B0000AB07P', year=1983, price=238.0}
+	Car{id='5384', brand='Dicki Group', model='Monet', plate='B000BJ8TZI', year=1981, price=206.0}
+	Car{id='20354', brand='Collier, Greenholt and Larson', model='Chagall', plate='B000J1FZV4', year=1990, price=179.0}
+	Car{id='8810', brand='Effertz and Sons', model='Bernini', plate='B000IATJEU', year=1994, price=222.0}
+	Car{id='164', brand='Becker, Klein and Berge', model='Rubens', plate='B000KFZ32A', year=2019, price=236.0}
+	Car{id='2340', brand='Renner, Conroy and Beahan', model='Joan Miro', plate='B000AOVECO', year=2004, price=241.0}
+	Car{id='2452', brand='Kub-Kuphal', model='Pollock', plate='B000A3J9AE', year=2020, price=225.0}
+	Car{id='680072', brand='Mante-Hoppe', model='Donatello', plate='B0000DIIQA', year=1990, price=106.0}
+	Car{id='4463', brand='Hermiston Group', model='Chagall', plate='B0002SUQUY', year=1995, price=54.0}
+	Car{id='3670300', brand='Grady-Funk', model='Diego Rivera', plate='B00025BKCK', year=2009, price=111.0}
+	Car{id='853141', brand='Macejkovic Group', model='Da Vinci', plate='B000KGCZ8O', year=1991, price=210.0}
+	Car{id='99348845', brand='Johns and Sons', model='Chagall', plate='B0002SUQUY', year=1991, price=235.0}
+	Car{id='1', brand='Pacocha, Haley and Kozey', model='Botticelli', plate='B0000DGUFP', year=2013, price=119.0}
+	Car{id='77942961', brand='McLaughlin Group', model='Joan Miro', plate='B000CFIMWQ', year=1989, price=112.0}
+	Car{id='4085727', brand='Schimmel, Bruen and Cronin', model='Bernini', plate='B00012FB6K', year=1996, price=147.0}
+	Car{id='340632', brand='Hudson-Tromp', model='Vincent', plate='B00097DN12', year=2014, price=102.0}
+	Car{id='550', brand='King-Stracke', model='Kahlo', plate='B000A6LPM6', year=2009, price=34.0}
+	Car{id='59', brand='Cronin, Paucek and Schinner', model='Gauguin', plate='B000CENBP0', year=2012, price=163.0}
+	Car{id='257', brand='Harris Inc', model='Pollock', plate='B000J1E1RS', year=1985, price=74.0}
+	Car{id='827', brand='McCullough Group', model='Magritte', plate='B000HDT0BU', year=2000, price=91.0}
+	Car{id='108', brand='Becker Group', model='Michelangelo', plate='B000PAOCOU', year=1986, price=160.0}
+	Car{id='676038072', brand='Reinger, Kuhic and Wiegand', model='Dali', plate='B000N5FYO4', year=2015, price=41.0}
+	Car{id='35678', brand='Rowe-McLaughlin', model='Degas', plate='B0000B0JG4', year=1986, price=211.0}
+	Car{id='842166', brand='Jerde-Spinka', model='Botticelli', plate='B0009RSVD2', year=2009, price=24.0}
+	Car{id='6', brand='Ondricka, Boyer and Jast', model='Diego Rivera', plate='B000A2O3U6', year=1997, price=148.0}
+	Car{id='4', brand='Fisher-Jast', model='Edward Hopper', plate='B000HW5FFG', year=1993, price=127.0}
+	Car{id='8560717', brand='Hamill LLC', model='Diego Rivera', plate='B000IAPYWQ', year=1986, price=67.0}
+	Car{id='10', brand='Bahringer and Sons', model='Titian', plate='B000JZZHEU', year=2007, price=168.0}
+	Car{id='99843', brand='Bartell, Funk and Hahn', model='Joan Miro', plate='B000A3PWXC', year=1982, price=205.0}
+	Car{id='917', brand='Gusikowski-Casper', model='Cezanne', plate='B0002X4OIY', year=2002, price=23.0}
+	Car{id='5', brand='Schulist, Bednar and Lubowitz', model='Durer', plate='B0002F03NW', year=1992, price=188.0}
+	Car{id='308168751', brand='Lockman-Deckow', model='Donatello', plate='B000ABNX30', year=2007, price=244.0}
+	Car{id='78', brand='Turcotte Group', model='Degas', plate='B000HKQS6I', year=2009, price=245.0}
+	Car{id='251', brand='MacGyver, King and Pollich', model='Matisse', plate='B0000008XW', year=2020, price=86.0}
+	Car{id='74611539', brand='Lemke, O'Hara and Weimann', model='Donatello', plate='B00012D9TQ', year=2001, price=47.0}
+	Car{id='8', brand='Wuckert Inc', model='Dali', plate='B000E5GB3Q', year=1985, price=60.0}
+	Car{id='26767', brand='Mueller and Sons', model='Dali', plate='B0009IOFWC', year=2003, price=68.0}
+	Car{id='5408324', brand='Macejkovic-King', model='Kahlo', plate='B000A6Y9HY', year=2000, price=205.0}
+	Car{id='4294', brand='Hartmann, Wiza and Torp', model='Dali', plate='B000OVNFDE', year=1989, price=212.0}
+	Car{id='9605621', brand='Gleichner, O'Conner and Cole', model='Degas', plate='B0000DGWB4', year=1981, price=65.0}
+	Car{id='462', brand='Mueller, Von and Klocko', model='El Greco', plate='B000A6WENA', year=1998, price=26.0}
+	Car{id='8702391', brand='Ullrich, Wunsch and Koelpin', model='Durer', plate='B000CSAK3M', year=2019, price=143.0}
+	Car{id='31237236', brand='Satterfield Group', model='Picasso', plate='B000I6VAU0', year=2013, price=97.0}
+	Car{id='872', brand='Goyette, Effertz and Schaefer', model='Picasso', plate='B000BJ4VFA', year=2014, price=234.0}
+	Car{id='295706322', brand='Schulist Inc', model='Bernini', plate='B000JR91YA', year=1990, price=68.0}
+	Car{id='9', brand='Harris-Watsica', model='Gauguin', plate='B000A3T33M', year=1992, price=123.0}
+	Car{id='55', brand='Welch, Emmerich and Haag', model='Renoir', plate='B000IT4T96', year=2013, price=162.0}
+
+
+Finished!

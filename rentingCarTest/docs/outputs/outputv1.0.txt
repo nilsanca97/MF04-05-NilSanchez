@@ -1,0 +1,8 @@
+/home/albert/.jdks/openjdk-24.0.1/bin/java -javaagent:/snap/intellij-idea-community/631/lib/idea_rt.jar=43465 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar/target/classes org.example.App
+Hello World!
+This is mateo: 2
+This is my BMW: Car{id='1', brand='BMW', model='M3', plate='1234', year=2022, price=100.0}
+This is my Mazda: Car{id='2', brand='BMW', model='M3', plate='5678', year=2021, price=50.0}
+My brand: BMW
+
+Process finished with exit code 0
