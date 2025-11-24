@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 @AnonymousAllowed
 public class BookingEndpoint {
 
-    /*@Autowired
+    @Autowired
     BookingService bookingService;
 
     public Iterable<Booking> getAllBookings() {
         return bookingService.findAll();
-    }*/
-    private final BookingService bookingService;
+    }
+    /*private final BookingService bookingService;
 
     public BookingEndpoint(BookingService bookingService) {
         this.bookingService = bookingService;
@@ -24,5 +24,5 @@ public class BookingEndpoint {
 
     public List<Booking> getAllBookings() {
         return bookingService.findAll();
-    }
+    }*/
 }
