@@ -6,6 +6,8 @@ import dev.app.rentingcartestvaadin.model.Booking;
 import dev.app.rentingcartestvaadin.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Endpoint
 @AnonymousAllowed
 public class BookingEndpoint {
@@ -13,16 +15,20 @@ public class BookingEndpoint {
     @Autowired
     BookingService bookingService;
 
+    //return Iterable instead of List
     public Iterable<Booking> getAllBookings() {
         return bookingService.findAll();
     }
-    /*private final BookingService bookingService;
+}
+
+    /*
+    private final BookingService bookingService;
 
     public BookingEndpoint(BookingService bookingService) {
         this.bookingService = bookingService;
     }
 
     public List<Booking> getAllBookings() {
-        return bookingService.findAll();
-    }*/
-}
+        return (List<Booking>) bookingService.findAll();
+    }
+}*/
