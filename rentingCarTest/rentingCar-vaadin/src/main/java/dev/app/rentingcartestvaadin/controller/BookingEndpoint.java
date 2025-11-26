@@ -6,6 +6,7 @@ import dev.app.rentingcartestvaadin.model.Booking;
 import dev.app.rentingcartestvaadin.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Endpoint
@@ -15,9 +16,13 @@ public class BookingEndpoint {
     @Autowired
     BookingService bookingService;
 
-    //return Iterable instead of List
-    public Iterable<Booking> getAllBookings() {
-        return bookingService.findAll();
+    //return List
+    public List<Booking> getAllBookings() {
+        List<Booking> bookings = new ArrayList<>();
+        for (Booking booking : bookingService.findAll()) {
+            bookings.add(booking);
+        }
+        return bookings;
     }
 }
 
