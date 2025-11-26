@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import { CarEndpoint } from 'Frontend/generated/endpoints';
 import Car from 'Frontend/generated/dev/app/rentingcartestvaadin/model/Car';
 
-export const config: ViewConfig = { menu: { order: 1, icon: 'line-awesome/svg/car-side-solid.svg' }, title: 'Cars' };
+export const config: ViewConfig = {
+    menu: { order: 1, icon: 'line-awesome/svg/car-side-solid.svg' },
+    title: 'Cars'
+};
 
 export default function CarsView() {
   const [cars, setCars] = useState<Car[]>([]);
