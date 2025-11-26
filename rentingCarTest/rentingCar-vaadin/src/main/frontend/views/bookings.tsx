@@ -17,8 +17,10 @@ export default function BookingsView() {
           const fetchBookings = async () => {
               try {
                 setLoading(true);
-                const bookingData = await BookingEndpoint.getAllBookings();
-                setBookings(bookingData ? Array.from(bookingData).filter((booking): booking is Booking => booking !== undefined) : []);
+                const bookingsData = await BookingEndpoint.getAllBookings();
+                setBookings(bookingsData ? Array.from(bookingsData).filter((booking): booking is Booking => booking !== undefined) : []);
+                //Filtra los undefined antes de llamar a setBookings
+                //setBookings(bookingsData.filter((booking): booking is Booking => booking !== undefined));
               } catch (error) {
                   setError('Failed to fetch bookings: '+ (error as Error).message);
               } finally {
@@ -36,8 +38,8 @@ export default function BookingsView() {
   return (
     <div className="flex flex-col h-full items-center justify-center p-l text-center box-border">
       <h1>Bookings</h1>
-      <h2>This place intentionally left empty</h2>
-      <p>It’s a place where you can grow your own UI 🤗: get all bookings and show them in a table</p>
+      //<h2>This place intentionally left empty</h2>
+      //<p>It’s a place where you can grow your own UI 🤗: get all bookings and show them in a table</p>
     </div>
   );
 }
