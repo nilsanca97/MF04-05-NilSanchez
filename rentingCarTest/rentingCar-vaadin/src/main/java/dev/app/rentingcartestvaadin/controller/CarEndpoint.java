@@ -6,6 +6,9 @@ import dev.app.rentingcartestvaadin.model.Car;
 import dev.app.rentingcartestvaadin.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Endpoint
 @AnonymousAllowed
 public class CarEndpoint {
@@ -13,7 +16,13 @@ public class CarEndpoint {
     @Autowired
     CarService carService;
 
-    public Iterable<Car> getAllCars() {
-        return carService.findAll();
+
+    public List<Car> getAllCars() {
+        List<Car> cars = new ArrayList<>();
+        for (Car car : carService.findAll()) {
+            cars.add(car);
+        }
+        return cars;
     }
+
 }
