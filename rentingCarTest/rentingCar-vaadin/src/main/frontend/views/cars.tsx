@@ -18,8 +18,10 @@ export default function CarsView() {
       try {
         setLoading(true);
         const carsData = await CarEndpoint.getAllCars();
-        //Filtra los undefined antes de llamar a setCars
-        setCars(carsData.filter((car): car is Car => car !== undefined));
+        if (carsData) { // dentro del if, carsData no es undefined
+            //Filtra los undefined antes de llamar a setCars
+            setCars(carsData.filter((car): car is Car => car !== undefined));
+        }
       } catch (err) {
         setError('Failed to fetch cars: ' + (err as Error).message);
       } finally {
