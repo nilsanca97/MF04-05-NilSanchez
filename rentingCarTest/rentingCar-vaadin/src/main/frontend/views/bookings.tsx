@@ -37,9 +37,23 @@ export default function BookingsView() {
 
   return (
     <div className="flex flex-col h-full items-center justify-center p-l text-center box-border">
-      <h1>Bookings</h1>
-      //<h2>This place intentionally left empty</h2>
-      //<p>It’s a place where you can grow your own UI 🤗: get all bookings and show them in a table</p>
+      <h1>Bookings </h1>
+
+      <div className= "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {bookings.map((booking) => (
+            <div key={booking.id} className="border rounded-lg p-4 shadow-md">
+                <h3 className="text-lg font-semibold">{booking.id}</h3>
+                <div className="mt-2 space-y-1">
+                    <p><strong>Qty_days:</strong> {booking.qtyDays}</p>
+                    <p><strong>Total Amount:</strong> {booking.totalAmount}</p>
+            </div>
+        </div>
+      ))}
+    </div>
+
+      <h2>This place intentionally left empty </h2>
+      <p>It’s a place where you can grow your own UI 🤗: get all bookings and show them in a table</p>
+
     </div>
   );
 }
