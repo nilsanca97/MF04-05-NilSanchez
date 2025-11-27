@@ -39,12 +39,14 @@ export default function BookingsView() {
     <div className="flex flex-col h-full items-center justify-center p-l text-center box-border">
       <h1>Bookings </h1>
 
-      <div className= "grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className= "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {bookings.map((booking) => (
             <div key={booking.id} className="border rounded-lg p-4 shadow-md">
 
                 <div className="mt-2 space-y-1">
                     <p><strong>Id Boooking:</strong> {booking.id}</p>
+                    // convert variable BookingDate from epoch(int) to LocalDate
+                    <p><strong>Booking_Date:</strong> {new Date(booking.bookingDate).toLocaleDateString()}</p>
                     <p><strong>Qty_days:</strong> {booking.qtyDays}</p>
                     <p><strong>Total Amount:</strong> {booking.totalAmount}</p>
                     <p><strong>Car brand:</strong> {booking.car?.brand} {booking.car?.model}</p>
