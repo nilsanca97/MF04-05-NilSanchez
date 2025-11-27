@@ -47,7 +47,8 @@ export default function BookingsView() {
                     <p><strong>Id Boooking:</strong> {booking.id}</p>
                     <p><strong>Qty_days:</strong> {booking.qtyDays}</p>
                     <p><strong>Total Amount:</strong> {booking.totalAmount}</p>
-
+                    <p><strong>Car brand:</strong> {booking.car?.brand} {booking.car?.model}</p>
+                    <p><strong> Client name:</strong> {booking.client?.name} {booking.client?.lastName}</p>
             </div>
         </div>
       ))}
