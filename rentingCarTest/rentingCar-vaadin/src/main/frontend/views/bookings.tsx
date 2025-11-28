@@ -57,11 +57,5 @@ export default function BookingsView() {
             </div>
         </div>
       ))}
-    </div>
-
-      <h2>This place intentionally left empty </h2>
-      <p>It’s a place where you can grow your own UI 🤗: get all bookings and show them in a table</p>
-
-    </div>
   );
 }
