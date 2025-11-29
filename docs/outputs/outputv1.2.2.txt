@@ -1,0 +1,114 @@
+/usr/lib/jvm/java-21-openjdk-amd64/bin/java -javaagent:/snap/intellij-idea-community/631/lib/idea_rt.jar=38167 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar/target/classes:/home/albert/.m2/repository/com/github/javafaker/javafaker/1.0.2/javafaker-1.0.2.jar:/home/albert/.m2/repository/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar:/home/albert/.m2/repository/org/yaml/snakeyaml/1.23/snakeyaml-1.23-android.jar:/home/albert/.m2/repository/com/github/mifmif/generex/1.0.2/generex-1.0.2.jar:/home/albert/.m2/repository/dk/brics/automaton/automaton/1.11-8/automaton-1.11-8.jar org.example.App
+Starting code...
+
+
+This is my list of cars: 
+-------------------------
+The list has 100 cars
+
+
+	Car{id='9', brand='Kiehn-Gutmann', model='null', plate='null', year=1999, price=0.0}
+	Car{id='457302', brand='Willms Group', model='null', plate='null', year=2004, price=0.0}
+	Car{id='7', brand='Altenwerth LLC', model='null', plate='null', year=2001, price=0.0}
+	Car{id='734270604', brand='Bailey-Koelpin', model='null', plate='null', year=2017, price=0.0}
+	Car{id='4', brand='Pfannerstill Group', model='null', plate='null', year=2004, price=0.0}
+	Car{id='482', brand='Donnelly Group', model='null', plate='null', year=2009, price=0.0}
+	Car{id='980496', brand='Weissnat, Lang and Schroeder', model='null', plate='null', year=1989, price=0.0}
+	Car{id='75', brand='Murazik, Blanda and Beatty', model='null', plate='null', year=2014, price=0.0}
+	Car{id='1711332', brand='Mosciski, Littel and Hirthe', model='null', plate='null', year=1984, price=0.0}
+	Car{id='841859', brand='Hagenes-Ondricka', model='null', plate='null', year=2000, price=0.0}
+	Car{id='875941902', brand='Weimann Group', model='null', plate='null', year=1994, price=0.0}
+	Car{id='1234', brand='O'Keefe Inc', model='null', plate='null', year=2001, price=0.0}
+	Car{id='0', brand='Bartell, Douglas and Labadie', model='null', plate='null', year=1987, price=0.0}
+	Car{id='922214546', brand='Altenwerth and Sons', model='null', plate='null', year=1997, price=0.0}
+	Car{id='108401', brand='Ward, Hilpert and Reynolds', model='null', plate='null', year=2015, price=0.0}
+	Car{id='1118', brand='Ryan Inc', model='null', plate='null', year=1997, price=0.0}
+	Car{id='5483', brand='Haag-McLaughlin', model='null', plate='null', year=1982, price=0.0}
+	Car{id='338027', brand='Kub LLC', model='null', plate='null', year=2008, price=0.0}
+	Car{id='1212', brand='McLaughlin, Cummings and Zemlak', model='null', plate='null', year=1992, price=0.0}
+	Car{id='4992', brand='Stark, Predovic and Donnelly', model='null', plate='null', year=2013, price=0.0}
+	Car{id='8314', brand='Rowe, Farrell and Langworth', model='null', plate='null', year=2001, price=0.0}
+	Car{id='93', brand='Kuphal-Cassin', model='null', plate='null', year=2005, price=0.0}
+	Car{id='23239712', brand='Little Group', model='null', plate='null', year=1993, price=0.0}
+	Car{id='71251', brand='Marks, Lockman and Bergstrom', model='null', plate='null', year=2007, price=0.0}
+	Car{id='2', brand='Lockman LLC', model='null', plate='null', year=2000, price=0.0}
+	Car{id='507391', brand='Walker, Jakubowski and Wehner', model='null', plate='null', year=2014, price=0.0}
+	Car{id='162628096', brand='Tremblay, Cummerata and Purdy', model='null', plate='null', year=2017, price=0.0}
+	Car{id='8', brand='Kemmer, Zboncak and Blick', model='null', plate='null', year=1996, price=0.0}
+	Car{id='934', brand='Effertz-Carter', model='null', plate='null', year=2012, price=0.0}
+	Car{id='9', brand='Shanahan, Bartell and Gutkowski', model='null', plate='null', year=2019, price=0.0}
+	Car{id='76', brand='Cartwright LLC', model='null', plate='null', year=1980, price=0.0}
+	Car{id='5461170', brand='Spinka, Nolan and Gerlach', model='null', plate='null', year=1981, price=0.0}
+	Car{id='9131', brand='Murphy Inc', model='null', plate='null', year=1986, price=0.0}
+	Car{id='2438461', brand='McClure Group', model='null', plate='null', year=1995, price=0.0}
+	Car{id='9', brand='Terry-Heidenreich', model='null', plate='null', year=1982, price=0.0}
+	Car{id='80347', brand='Kling, Lynch and Haley', model='null', plate='null', year=2019, price=0.0}
+	Car{id='6771651', brand='Kshlerin, Kub and O'Kon', model='null', plate='null', year=2005, price=0.0}
+	Car{id='133180218', brand='Abshire Group', model='null', plate='null', year=2008, price=0.0}
+	Car{id='8520', brand='Ryan-Turcotte', model='null', plate='null', year=1991, price=0.0}
+	Car{id='353448', brand='Schamberger-Langworth', model='null', plate='null', year=1996, price=0.0}
+	Car{id='5', brand='O'Kon and Sons', model='null', plate='null', year=1992, price=0.0}
+	Car{id='5730589', brand='Lubowitz Inc', model='null', plate='null', year=1983, price=0.0}
+	Car{id='8186776', brand='Weimann-Ernser', model='null', plate='null', year=1994, price=0.0}
+	Car{id='7434', brand='Torphy-Herman', model='null', plate='null', year=2014, price=0.0}
+	Car{id='401081', brand='O'Kon-DuBuque', model='null', plate='null', year=1986, price=0.0}
+	Car{id='30308', brand='Tremblay Group', model='null', plate='null', year=1990, price=0.0}
+	Car{id='723269661', brand='Little, Glover and Pagac', model='null', plate='null', year=1990, price=0.0}
+	Car{id='6550069', brand='Hansen-Roberts', model='null', plate='null', year=1999, price=0.0}
+	Car{id='253634', brand='Greenfelder, Brown and Bernier', model='null', plate='null', year=2007, price=0.0}
+	Car{id='999', brand='Kihn-Parker', model='null', plate='null', year=2017, price=0.0}
+	Car{id='74152117', brand='Goldner-Willms', model='null', plate='null', year=1986, price=0.0}
+	Car{id='41026087', brand='Stracke-Rice', model='null', plate='null', year=2018, price=0.0}
+	Car{id='5217', brand='Marks and Sons', model='null', plate='null', year=2002, price=0.0}
+	Car{id='417850', brand='Stracke-Douglas', model='null', plate='null', year=2002, price=0.0}
+	Car{id='282616', brand='Stracke, Purdy and Weimann', model='null', plate='null', year=2002, price=0.0}
+	Car{id='61', brand='Reynolds-Effertz', model='null', plate='null', year=1986, price=0.0}
+	Car{id='918', brand='Considine, Roob and Kovacek', model='null', plate='null', year=2010, price=0.0}
+	Car{id='8720868', brand='Harber Group', model='null', plate='null', year=1997, price=0.0}
+	Car{id='2', brand='Swift Inc', model='null', plate='null', year=1988, price=0.0}
+	Car{id='29', brand='Rath-Labadie', model='null', plate='null', year=1999, price=0.0}
+	Car{id='3', brand='Little-Corkery', model='null', plate='null', year=1997, price=0.0}
+	Car{id='474', brand='Kertzmann-Zboncak', model='null', plate='null', year=1997, price=0.0}
+	Car{id='1', brand='Gislason-Raynor', model='null', plate='null', year=2013, price=0.0}
+	Car{id='9', brand='Considine-Barrows', model='null', plate='null', year=1990, price=0.0}
+	Car{id='930', brand='Jakubowski and Sons', model='null', plate='null', year=2007, price=0.0}
+	Car{id='546688', brand='Kihn, Maggio and Skiles', model='null', plate='null', year=2019, price=0.0}
+	Car{id='9', brand='Pollich-Oberbrunner', model='null', plate='null', year=1994, price=0.0}
+	Car{id='4889', brand='Funk Inc', model='null', plate='null', year=2012, price=0.0}
+	Car{id='14487', brand='Macejkovic, Turcotte and Mills', model='null', plate='null', year=1984, price=0.0}
+	Car{id='324', brand='Osinski, Schmeler and Davis', model='null', plate='null', year=2004, price=0.0}
+	Car{id='60', brand='Lesch, Zieme and Kub', model='null', plate='null', year=1980, price=0.0}
+	Car{id='45179580', brand='Bahringer, Orn and Cruickshank', model='null', plate='null', year=1996, price=0.0}
+	Car{id='51793', brand='Okuneva Group', model='null', plate='null', year=1992, price=0.0}
+	Car{id='892838814', brand='Witting and Sons', model='null', plate='null', year=1990, price=0.0}
+	Car{id='647', brand='Rau, Runolfsdottir and Collier', model='null', plate='null', year=2007, price=0.0}
+	Car{id='4700', brand='Boehm LLC', model='null', plate='null', year=2005, price=0.0}
+	Car{id='3307', brand='Schumm Inc', model='null', plate='null', year=2007, price=0.0}
+	Car{id='5085050', brand='Murazik-Reilly', model='null', plate='null', year=2005, price=0.0}
+	Car{id='4985793', brand='Reichert, Terry and Boyer', model='null', plate='null', year=1992, price=0.0}
+	Car{id='7188224', brand='Botsford LLC', model='null', plate='null', year=1985, price=0.0}
+	Car{id='404130', brand='McDermott and Sons', model='null', plate='null', year=2000, price=0.0}
+	Car{id='59813', brand='Spinka-Weber', model='null', plate='null', year=2000, price=0.0}
+	Car{id='5519393', brand='Labadie, Schoen and Windler', model='null', plate='null', year=1988, price=0.0}
+	Car{id='849269901', brand='Terry-Labadie', model='null', plate='null', year=2008, price=0.0}
+	Car{id='28', brand='Satterfield, Huel and Bins', model='null', plate='null', year=1998, price=0.0}
+	Car{id='57000', brand='Hegmann and Sons', model='null', plate='null', year=1983, price=0.0}
+	Car{id='92', brand='Collier, Raynor and Crona', model='null', plate='null', year=1990, price=0.0}
+	Car{id='69', brand='Daugherty LLC', model='null', plate='null', year=1994, price=0.0}
+	Car{id='4158', brand='Parker, Jakubowski and Swift', model='null', plate='null', year=1983, price=0.0}
+	Car{id='8', brand='Williamson-Reichel', model='null', plate='null', year=2000, price=0.0}
+	Car{id='763562268', brand='Kub, Corwin and Stark', model='null', plate='null', year=1993, price=0.0}
+	Car{id='68', brand='Bartoletti-Johnston', model='null', plate='null', year=1984, price=0.0}
+	Car{id='6470652', brand='Mayer-Keebler', model='null', plate='null', year=1988, price=0.0}
+	Car{id='44822', brand='Prohaska, Effertz and Marvin', model='null', plate='null', year=2014, price=0.0}
+	Car{id='63', brand='Pacocha-Bogan', model='null', plate='null', year=2008, price=0.0}
+	Car{id='320796', brand='Swaniawski Group', model='null', plate='null', year=2008, price=0.0}
+	Car{id='8', brand='Shields-Powlowski', model='null', plate='null', year=2016, price=0.0}
+	Car{id='172169', brand='Stoltenberg Inc', model='null', plate='null', year=1984, price=0.0}
+	Car{id='24156113', brand='Quitzon-Abbott', model='null', plate='null', year=1990, price=0.0}
+	Car{id='104997', brand='Howell-Russel', model='null', plate='null', year=1997, price=0.0}
+
+
+Finished!
+
+Process finished with exit code 0

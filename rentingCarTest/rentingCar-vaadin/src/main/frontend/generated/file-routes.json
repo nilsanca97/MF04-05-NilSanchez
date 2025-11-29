@@ -1,0 +1,50 @@
+[
+  {
+    "route": "",
+    "flowLayout": false,
+    "params": {},
+    "title": "Main Layout",
+    "children": [
+      {
+        "route": "",
+        "menu": {
+          "order": 0,
+          "icon": "line-awesome/svg/home-solid.svg"
+        },
+        "title": "Home",
+        "flowLayout": false,
+        "params": {}
+      },
+      {
+        "route": "bookings",
+        "menu": {
+          "order": 2,
+          "icon": "line-awesome/svg/address-book-solid.svg"
+        },
+        "title": "Bookings",
+        "flowLayout": false,
+        "params": {}
+      },
+      {
+        "route": "cars",
+        "menu": {
+          "order": 1,
+          "icon": "line-awesome/svg/car-side-solid.svg"
+        },
+        "title": "Cars",
+        "flowLayout": false,
+        "params": {}
+      },
+      {
+        "route": "clients",
+        "menu": {
+          "order": 3,
+          "icon": "line-awesome/svg/person-booth-solid.svg"
+        },
+        "title": "Clients",
+        "flowLayout": false,
+        "params": {}
+      }
+    ]
+  }
+]

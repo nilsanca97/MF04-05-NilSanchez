@@ -1,0 +1,16 @@
+/usr/lib/jvm/java-21-openjdk-amd64/bin/java -javaagent:/snap/intellij-idea-community/631/lib/idea_rt.jar=44867 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /home/albert/MyProjects/Sandbox/rentingCarTest/rentingCar/target/classes:/home/albert/.m2/repository/com/github/javafaker/javafaker/1.0.2/javafaker-1.0.2.jar:/home/albert/.m2/repository/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar:/home/albert/.m2/repository/org/yaml/snakeyaml/1.23/snakeyaml-1.23-android.jar:/home/albert/.m2/repository/com/github/mifmif/generex/1.0.2/generex-1.0.2.jar:/home/albert/.m2/repository/dk/brics/automaton/automaton/1.11-8/automaton-1.11-8.jar org.example.App
+Starting code...
+Cars from DB: 
+-------------------------
+
+Size DB: 2
+Cars from DB: [Car{id='1', brand='BMW', model='M3', plate='A123DFGR4', year=2022, price=0.0}, Car{id='2', brand='Mazda', model='Mazda 3', plate='B123DFGR4', year=2021, price=0.0}]
+Cars from DB: 
+-------------------------
+
+Size DB: 2
+Cars from DB: [Car{id='1', brand='BMW', model='M3', plate='1111111', year=2022, price=0.0}, Car{id='2', brand='Mazda', model='Mazda 3', plate='B123DFGR4', year=2021, price=0.0}]
+Finished!
+
+Process finished with exit code 0
+
